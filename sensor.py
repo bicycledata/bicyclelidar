@@ -46,13 +46,13 @@ def start_server():
 
 class BicycleLidar(BicycleSensor):
   def write_header(self):
-    self.write_to_file('time, unix_timestamp, distance [cm], strength, temp')
+    self.write_to_file('time,unix_timestamp,distance,strength,temp')
 
   def write_measurement(self):
     '''Write the measurement to file and broadcast to clients.'''
-    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
     unix_timestamp = time.time()  # Unix timestamp
-    self.write_to_file(f'{current_time}, {unix_timestamp}, {self._distance}, {self._strength}, {self._temp}')
+    self.write_to_file(f'{current_time},{unix_timestamp},{self._distance},{self._strength},{self._temp}')
     broadcast(f'lidar1:{self._distance:.1f}#'.encode('utf-8'))
 
   def worker_main(self):
