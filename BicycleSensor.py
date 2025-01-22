@@ -177,7 +177,7 @@ class BicycleSensor(ABC):
         with open(filename, 'r') as file:
           csv_data = file.readlines()
 
-        r = requests.post('https://bicycledata.ochel.se:80/api/sensor/update', json={'hash': self._hash, 'sensor': self._name, 'csv_data': csv_data}, timeout=10)
+        r = requests.post('https://bicycledata.vti.se/api/sensor/update', json={'hash': self._hash, 'sensor': self._name, 'csv_data': csv_data}, timeout=10)
         logging.info(f'{r.status_code}: {filename}')
 
         if r.status_code == 200:
