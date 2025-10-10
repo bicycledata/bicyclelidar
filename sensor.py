@@ -44,7 +44,7 @@ def main(bicycleinit: Connection, name: str, args: dict):
 
         if checksum == Q[8]:
           current_time = time.time()
-          if current_time - last_measurement_time >= measurement_interval:
+          if current_time - last_measurement_time >= measurement_interval and dist != 65535:
             sensor.write_measurement([dist, strength, temp])
             last_measurement_time = current_time
   except KeyboardInterrupt:
