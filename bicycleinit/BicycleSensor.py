@@ -7,6 +7,9 @@ class BicycleSensor:
   def __init__(self, bicycleinit: Connection, name: str, args: dict):
     pass
 
+  def ping(self):
+    pass
+
   def send_msg(self, msg):
     if isinstance(msg, dict):
       print("Message:", msg)
